@@ -6,18 +6,21 @@
  * Time: 1:58 PM
  */
 
-// 此程序运行需要 PHP 5.5 或更高版本
 namespace App;
 use App\Engine as E;
+
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
+header("charset=utf-8");
 
 if (version_compare(PHP_VERSION, '5.5.0', '<'))
     exit('你的PHP版本是 ' . PHP_VERSION . '. 此程序运行需要 PHP 5.5 或更高版本.');
 if (!extension_loaded('mbstring'))
     exit('请安装"mbstring"扩展.');
 
-// 设置路径常量
+// 设置全局常量
 define('PROT', (!empty($_SERVER['HTTPS']) && strtolower($_SERVER['HTTPS'] == 'on')) ? 'https://' : 'http://');
-define('ROOT_URL', PROT . $_SERVER['HTTP_HOST']); // Remove backslashes for Windows compatibility
+define('ROOT_URL', PROT . $_SERVER['HTTP_HOST']);
 define('ROOT_PATH', __DIR__ . '/');
 
 try
@@ -33,6 +36,5 @@ try
 }
 catch (\Exception $oE)
 {
-    echo 1024;
     echo $oE->getMessage();
 }

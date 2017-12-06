@@ -8,10 +8,11 @@
 
 namespace App\Controller;
 
+use \App\Engine\Util;
 
 class BaseController
 {
-    protected $oUtil, $oModel;
+    protected $util, $oModel;
 
     public function __construct()
     {
@@ -19,12 +20,36 @@ class BaseController
         if (empty($_SESSION))
             @session_start();
 
-        $this->oUtil = new \App\Engine\Util;
+        $this->util = new Util();
+
+        foreach($_COOKIE as $key => $value){
+            $this->__set($key, $value);
+        }
+
+        foreach($_POST as $key => $value){
+            $this->__set($key, $value);
+        }
+
+        foreach($_GET as $key => $value){
+            $this->__set($key, $value);
+        }
+    }
+
+    public function __set($name, $value) {
+        $this->$name = urldecode($value);
+    }
+
+    public function __get($name) {
+        if(!isset($this->$name) || empty($name)) {
+            echo "参数错误" . __FILE__ . " : ". __LINE__;
+//            exit();
+        }
+        return $this->$name;
     }
 
     public function notFound()
     {
-        $this->oUtil->getView('not_found');
+        $this->util->getView('not_found');
     }
 
     protected function isLogged()

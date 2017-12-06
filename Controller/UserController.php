@@ -16,7 +16,7 @@ class UserController extends BaseController
         parent::__construct();
 
         /** Get the Model class in all the controller class **/
-        $this->oUtil->getModel('User');
+        $this->util->getModel('User');
         $this->oModel = new \App\Model\UserModel;
     }
 
@@ -34,10 +34,10 @@ class UserController extends BaseController
                 exit;
             }
             else
-                $this->oUtil->sErrMsg = 'Incorrect Login!';
+                $this->util->sErrMsg = 'Incorrect Login!';
         }
 
-        $this->oUtil->getView('login');
+        $this->util->getView('login');
     }
 
     public function logout()

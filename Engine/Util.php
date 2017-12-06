@@ -21,7 +21,7 @@ class Util
     }
 
     /**
-     * This method is useful in order to avoid the duplication of code (create almost the same method for "getView" and "getModel"
+     * 统一获取 View 和 Model
      */
     private function _get($sFileName, $sType)
     {
@@ -29,13 +29,13 @@ class Util
         if (is_file($sFullPath))
             require $sFullPath;
         else
-            exit('The "' . $sFullPath . '" file doesn\'t exist');
+            exit('路径 "' . $sFullPath . '" 下的文件不存在');
     }
 
     /**
-     * Set variables for the template views.
-     *
-     * @return void
+     * 设置模板变量
+     * @param $sKey
+     * @param $mVal
      */
     public function __set($sKey, $mVal)
     {

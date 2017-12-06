@@ -11,14 +11,14 @@ namespace App\Engine;
 final class Config
 {
 
-    // Database info (if you want to test the script, please edit the below constants with yours)
+    // 数据库配置
     const
-    DB_HOST = 'localhost',
-    DB_NAME = 'mymvcblog',
+    DB_HOST = '192.168.199.228',
+    DB_NAME = 'test1',
     DB_USR = 'root',
-    DB_PWD = '111111',
+    DB_PWD = '91linkim',
 
-    // Title of the site
+    // 网站标题
     SITE_NAME = '我的网站';
 
 }

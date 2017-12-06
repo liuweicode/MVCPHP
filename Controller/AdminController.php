@@ -8,6 +8,7 @@
 
 namespace App\Controller;
 
+use \App\Model\AdminModel;
 
 class AdminController extends BaseController
 {
@@ -15,9 +16,8 @@ class AdminController extends BaseController
     {
         parent::__construct();
 
-        /** Get the Model class in all the controller class **/
-        $this->oUtil->getModel('Admin');
-        $this->oModel = new \App\Model\AdminModel;
+        $this->util->getModel('Admin');
+        $this->oModel = new AdminModel;
     }
 
     public function login()
@@ -34,9 +34,9 @@ class AdminController extends BaseController
                 exit;
             }
             else
-                $this->oUtil->sErrMsg = 'Incorrect Login!';
+                $this->util->sErrMsg = 'Incorrect Login!';
         }
 
-        $this->oUtil->getView('login');
+        $this->util->getView('login');
     }
 }

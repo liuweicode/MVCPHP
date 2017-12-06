@@ -12,9 +12,12 @@ namespace App\Engine;
 require_once __DIR__ . '/Pattern/Base.trait.php';
 require_once __DIR__ . '/Pattern/Singleton.trait.php';
 
+use \App\Engine\Pattern\Singleton; // Thanks Trait feature of PHP 5.4, I don't duplicate pattern code
+
 class Loader
 {
-    use \App\Engine\Pattern\Singleton; // Thanks Trait feature of PHP 5.4, I don't duplicate pattern code
+
+    use Singleton;
 
     public function init()
     {

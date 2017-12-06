@@ -8,22 +8,28 @@
 
 namespace App\Controller;
 
+use App\Model\IndexModel;
 
 class IndexController extends BaseController
 {
     public function __construct()
     {
         parent::__construct();
-
-        /** Get the Model class in all the controller class **/
-        $this->oUtil->getModel('Index');
-        $this->oModel = new \App\Model\IndexModel;
+        $this->util->getModel('Index');
+        $this->oModel = new IndexModel();
     }
 
     public function index()
     {
-        $this->oUtil->oPosts = $this->oModel->get(0, 5);
+        if (!isset($this->page))
+            $this->page = 0;
 
-        $this->oUtil->getView('index');
+        if (!isset($this->size))
+            $this->size = 5;
+
+        $this->util->posts = $this->oModel->get($this->page, $this->size);
+
+        $this->util->getView('index');
     }
+
 }
