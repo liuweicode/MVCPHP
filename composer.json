@@ -1,0 +1,14 @@
+{
+    "name": "lingjin/project",
+    "description": "framework",
+    "type": "project",
+    "require": {
+        "smarty/smarty": "^3.1"
+    },
+    "authors": [
+        {
+            "name": "liuwei",
+            "email": "wei.liu@linkim.com.cn"
+        }
+    ]
+}

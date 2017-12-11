@@ -15,8 +15,7 @@ class IndexController extends BaseController
     public function __construct()
     {
         parent::__construct();
-        $this->util->getModel('Index');
-        $this->oModel = new IndexModel();
+        $this->dbModel = new IndexModel();
     }
 
     public function index()
@@ -27,9 +26,12 @@ class IndexController extends BaseController
         if (!isset($this->size))
             $this->size = 5;
 
-        $this->util->posts = $this->oModel->get($this->page, $this->size);
+        $model_list = $this->dbModel->get($this->page, $this->size);
+        //debug_print_arr($model_list);
 
-        $this->util->getView('index');
+        $this->smarty->assign('aa', '标题111');
+        $this->smarty->assign('model_list', $model_list);
+        $this->smarty->display('index.tpl');
     }
 
 }

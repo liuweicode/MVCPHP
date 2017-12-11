@@ -8,6 +8,7 @@
 
 namespace App\Model;
 
+use App\Engine\Db;
 
 class BaseModel
 {
@@ -15,6 +16,6 @@ class BaseModel
 
     public function __construct()
     {
-        $this->oDb = new \App\Engine\Db;
+        $this->oDb = new Db();
     }
 }

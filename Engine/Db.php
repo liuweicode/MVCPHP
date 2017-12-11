@@ -1,16 +1,17 @@
 <?php
 
 namespace App\Engine;
+use PDO;
 
-class Db extends \PDO
+class Db extends PDO
 {
 
     public function __construct()
     {
         $aDriverOptions[\PDO::MYSQL_ATTR_INIT_COMMAND] = 'SET NAMES UTF8';
         parent::__construct('mysql:host=' . Config::DB_HOST . ';dbname=' . Config::DB_NAME . ';', Config::DB_USR, Config::DB_PWD, $aDriverOptions);
-        $this->setAttribute(\PDO::ATTR_EMULATE_PREPARES, false);
-        $this->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+        $this->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+        $this->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
 }

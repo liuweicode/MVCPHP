@@ -23,18 +23,20 @@ define('PROT', (!empty($_SERVER['HTTPS']) && strtolower($_SERVER['HTTPS'] == 'on
 define('ROOT_URL', PROT . $_SERVER['HTTP_HOST']);
 define('ROOT_PATH', __DIR__ . '/');
 
+require_once "common/common.func.php";
 try
 {
     require ROOT_PATH . 'Engine/Loader.php';
     E\Loader::getInstance()->init(); // 加载所需的类
 
-    $action = !empty($_GET['do']) ? $_GET['do'] : 'Index.index';
-    list($ctrl, $act)  = explode('.',$action);
-
-    $aParams = ['ctrl' => $ctrl, 'act' => $act]; // I use the new PHP 5.4 short array syntax
-    E\Router::run($aParams);
+    $do = (!empty($_GET['do'])) ? $_GET['do']:'index';
+    $cmd = (!empty($_GET['cmd'])) ? $_GET['cmd']:'index';
+    E\Router::run($do, $cmd);
 }
 catch (\Exception $oE)
 {
     echo $oE->getMessage();
+    echo "<pre>";
+    debug_print_backtrace();
+    exit();
 }

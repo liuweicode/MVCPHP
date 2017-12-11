@@ -4,21 +4,21 @@ namespace App\Engine;
 
 class Router
 {
-    public static function run (array $aParams)
+    public static function run ($do, $cmd)
     {
         $sNamespace = 'App\Controller\\';
         $sDefCtrl = $sNamespace . 'IndexController';
         $sCtrlPath = ROOT_PATH . 'Controller/';
-        $sCtrl = ucfirst($aParams['ctrl']);
+        $do = ucfirst($do);
 
-        if (is_file($sCtrlPath . $sCtrl . 'Controller.php'))
+        if (is_file($sCtrlPath . $do . 'Controller.php'))
         {
-            $sCtrl = $sNamespace . $sCtrl . 'Controller';
+            $sCtrl = $sNamespace . $do . 'Controller';
 
             $oCtrl = new $sCtrl;
 
-            if ((new \ReflectionClass($oCtrl))->hasMethod($aParams['act']) && (new \ReflectionMethod($oCtrl, $aParams['act']))->isPublic())
-                call_user_func(array($oCtrl, $aParams['act']), array());
+            if ((new \ReflectionClass($oCtrl))->hasMethod($cmd) && (new \ReflectionMethod($oCtrl, $cmd))->isPublic())
+                call_user_func(array($oCtrl, $cmd), array());
             else
                 call_user_func(array($oCtrl, 'notFound'));
         }

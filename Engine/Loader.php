@@ -14,6 +14,8 @@ class Loader
 
     public function init()
     {
+        // 自动加载第三方类库
+        require_once ROOT_PATH."/vendor/autoload.php";
         // 动态注册加载类
         spl_autoload_register(array(__CLASS__, '_loadClasses'));
     }

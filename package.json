@@ -1,0 +1,15 @@
+{
+  "private": true,
+  "name": "pufa-year-end-promotion",
+  "version": "1.0.0",
+  "description": "浦发年终回馈活动",
+  "dependencies": {
+    "jquery": "^3.2.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "wei.liu@linkim.com.cn",
+  "license": "ISC"
+}

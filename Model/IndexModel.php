@@ -13,10 +13,10 @@ class IndexModel extends BaseModel
 {
     public function get($iOffset, $iLimit)
     {
-        $oStmt = $this->oDb->prepare('SELECT * FROM Posts ORDER BY createdDate DESC LIMIT :offset, :limit');
+        $oStmt = $this->oDb->prepare('SELECT * FROM restaurant ORDER BY id  LIMIT :offset, :limit');
         $oStmt->bindParam(':offset', $iOffset, \PDO::PARAM_INT);
         $oStmt->bindParam(':limit', $iLimit, \PDO::PARAM_INT);
         $oStmt->execute();
-        return $oStmt->fetchAll(\PDO::FETCH_OBJ);
+        return $oStmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 }
